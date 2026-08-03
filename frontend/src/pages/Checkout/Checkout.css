@@ -1,0 +1,804 @@
+/* ===========================
+   GOOGLE FONT
+=========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+}
+
+/* ===========================
+   PAGE
+=========================== */
+
+.checkout-page{
+    width:100%;
+    min-height:100vh;
+    background:#f5f7fb;
+    padding:40px 20px;
+}
+
+.checkout-container{
+    max-width:1300px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:30px;
+    align-items:start;
+}
+
+/* ===========================
+   LEFT SECTION
+=========================== */
+
+.checkout-left{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.checkout-header h1{
+    font-size:38px;
+    color:#222;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.checkout-header p{
+    color:#777;
+    font-size:15px;
+}
+
+/* ===========================
+   CARD
+=========================== */
+
+.checkout-card{
+    background:#fff;
+    border-radius:16px;
+    padding:25px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.checkout-card h2{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#222;
+    font-size:22px;
+    margin-bottom:25px;
+}
+
+/* ===========================
+   FORM
+=========================== */
+
+.input-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.input-group{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:20px;
+}
+
+.input-group label{
+    margin-bottom:8px;
+    color:#444;
+    font-weight:500;
+    font-size:15px;
+}
+
+.input-group input,
+.input-group textarea{
+
+    width:100%;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:14px 16px;
+    font-size:15px;
+    outline:none;
+    transition:.3s;
+    background:#fff;
+}
+
+.input-group textarea{
+    resize:none;
+}
+
+.input-group input:focus,
+.input-group textarea:focus{
+
+    border-color:#28a745;
+    box-shadow:0 0 0 3px rgba(40,167,69,.12);
+
+}
+
+/* ===========================
+   PAYMENT
+=========================== */
+
+.payment-option{
+
+    display:flex;
+    align-items:center;
+    gap:18px;
+    border:1px solid #e5e5e5;
+    border-radius:14px;
+    padding:18px;
+    margin-bottom:15px;
+    cursor:pointer;
+    transition:.3s;
+    background:#fff;
+
+}
+
+.payment-option:hover{
+
+    border-color:#28a745;
+    background:#f8fff8;
+    transform:translateY(-2px);
+
+}
+
+.payment-option input{
+
+    transform:scale(1.2);
+
+}
+
+.payment-option h4{
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:17px;
+    color:#222;
+    margin-bottom:4px;
+
+}
+
+.payment-option p{
+
+    color:#777;
+    font-size:14px;
+
+}
+
+.payment-option svg{
+
+    color:#28a745;
+    font-size:18px;
+
+}
+
+/* ===========================
+   HORIZONTAL LINE
+=========================== */
+
+hr{
+
+    border:none;
+    border-top:1px solid #eee;
+    margin:20px 0;
+
+}
+/* ===========================
+   RIGHT SECTION
+=========================== */
+
+.checkout-right{
+    position:sticky;
+    top:30px;
+}
+
+.summary-card{
+    background:#fff;
+    border-radius:16px;
+    padding:25px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.summary-card h2{
+    font-size:24px;
+    color:#222;
+    margin-bottom:20px;
+}
+
+/* ===========================
+   CART ITEMS
+=========================== */
+
+.cart-items{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    margin-bottom:25px;
+    max-height:320px;
+    overflow-y:auto;
+}
+
+.cart-items::-webkit-scrollbar{
+    width:5px;
+}
+
+.cart-items::-webkit-scrollbar-thumb{
+    background:#28a745;
+    border-radius:10px;
+}
+
+.cart-item{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding-bottom:15px;
+    border-bottom:1px solid #f0f0f0;
+}
+
+.cart-item:last-child{
+    border-bottom:none;
+}
+
+.cart-item img{
+    width:70px;
+    height:70px;
+    object-fit:cover;
+    border-radius:10px;
+    border:1px solid #eee;
+}
+
+.cart-details{
+    flex:1;
+}
+
+.cart-details h4{
+    font-size:16px;
+    color:#222;
+    margin-bottom:5px;
+}
+
+.cart-details p{
+    font-size:14px;
+    color:#777;
+}
+
+.cart-item h4:last-child{
+    color:#28a745;
+    font-weight:700;
+    white-space:nowrap;
+}
+
+.empty-cart{
+    text-align:center;
+    color:#888;
+    padding:25px;
+}
+
+/* ===========================
+   COUPON
+=========================== */
+
+.coupon-section{
+    margin:25px 0;
+}
+
+.coupon-section h3{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:18px;
+    color:#222;
+    margin-bottom:12px;
+}
+
+.coupon-section svg{
+    color:#28a745;
+}
+
+.coupon-box{
+    display:flex;
+    gap:10px;
+}
+
+.coupon-box input{
+    flex:1;
+    padding:13px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    outline:none;
+    font-size:15px;
+}
+
+.coupon-box input:focus{
+    border-color:#28a745;
+}
+
+.coupon-box button{
+    background:#28a745;
+    color:#fff;
+    border:none;
+    padding:0 22px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.3s;
+}
+
+.coupon-box button:hover{
+    background:#218838;
+}
+
+/* ===========================
+   PRICE DETAILS
+=========================== */
+
+.price-details{
+    margin-top:25px;
+}
+
+.price-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:14px 0;
+    color:#555;
+    font-size:16px;
+}
+
+.price-row.total{
+    font-size:22px;
+    font-weight:700;
+    color:#222;
+}
+
+.discount{
+    color:#28a745;
+    font-weight:600;
+}
+
+/* ===========================
+   SECURE PAYMENT
+=========================== */
+
+.secure-payment{
+    margin:25px 0;
+    background:#f8fff8;
+    border:1px solid #d7f0dd;
+    border-radius:12px;
+    padding:18px;
+    display:flex;
+    gap:15px;
+    align-items:center;
+}
+
+.secure-payment svg{
+    font-size:30px;
+    color:#28a745;
+}
+
+.secure-payment h4{
+    color:#222;
+    margin-bottom:4px;
+}
+
+.secure-payment p{
+    color:#777;
+    font-size:14px;
+}
+
+/* ===========================
+   PLACE ORDER BUTTON
+=========================== */
+
+.place-order-btn{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:12px;
+    background:#28a745;
+    color:#fff;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.place-order-btn:hover{
+    background:#218838;
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(40,167,69,.25);
+}
+
+.place-order-btn:active{
+    transform:scale(.98);
+}
+/* ===================================
+   RESPONSIVE DESIGN
+=================================== */
+
+@media (max-width:1100px){
+
+.checkout-container{
+
+grid-template-columns:1fr;
+
+}
+
+.checkout-right{
+
+position:static;
+
+}
+
+.summary-card{
+
+margin-top:10px;
+
+}
+
+}
+
+@media (max-width:768px){
+
+.checkout-page{
+
+padding:20px;
+
+}
+
+.checkout-header h1{
+
+font-size:30px;
+
+}
+
+.checkout-header p{
+
+font-size:14px;
+
+}
+
+.checkout-card{
+
+padding:20px;
+
+}
+
+.summary-card{
+
+padding:20px;
+
+}
+
+.input-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.payment-option{
+
+padding:15px;
+
+}
+
+.payment-option h4{
+
+font-size:16px;
+
+}
+
+.payment-option p{
+
+font-size:13px;
+
+}
+
+.coupon-box{
+
+flex-direction:column;
+
+}
+
+.coupon-box button{
+
+width:100%;
+
+padding:14px;
+
+}
+
+.cart-item{
+
+align-items:flex-start;
+
+}
+
+.cart-item img{
+
+width:65px;
+
+height:65px;
+
+}
+
+.place-order-btn{
+
+font-size:16px;
+
+padding:15px;
+
+}
+
+}
+
+@media (max-width:576px){
+
+.checkout-page{
+
+padding:15px;
+
+}
+
+.checkout-header{
+
+text-align:center;
+
+margin-bottom:15px;
+
+}
+
+.checkout-header h1{
+
+font-size:26px;
+
+}
+
+.checkout-card{
+
+padding:16px;
+
+border-radius:12px;
+
+}
+
+.summary-card{
+
+padding:16px;
+
+border-radius:12px;
+
+}
+
+.checkout-card h2,
+
+.summary-card h2{
+
+font-size:20px;
+
+}
+
+.input-group input,
+
+.input-group textarea{
+
+padding:12px;
+
+font-size:14px;
+
+}
+
+.payment-option{
+
+gap:12px;
+
+padding:14px;
+
+}
+
+.payment-option input{
+
+transform:scale(1);
+
+}
+
+.payment-option h4{
+
+font-size:15px;
+
+}
+
+.payment-option p{
+
+font-size:12px;
+
+}
+
+.cart-item{
+
+flex-direction:column;
+
+align-items:center;
+
+text-align:center;
+
+gap:10px;
+
+}
+
+.cart-item img{
+
+width:90px;
+
+height:90px;
+
+}
+
+.cart-details{
+
+width:100%;
+
+}
+
+.price-row{
+
+font-size:15px;
+
+}
+
+.price-row.total{
+
+font-size:20px;
+
+}
+
+.secure-payment{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+.secure-payment svg{
+
+font-size:36px;
+
+}
+
+.place-order-btn{
+
+font-size:15px;
+
+padding:14px;
+
+}
+
+}
+
+/* ===================================
+   INPUT PLACEHOLDER
+=================================== */
+
+input::placeholder,
+textarea::placeholder{
+
+color:#aaa;
+
+}
+
+/* ===================================
+   SMOOTH TRANSITIONS
+=================================== */
+
+button,
+input,
+textarea,
+.payment-option,
+.checkout-card,
+.summary-card{
+
+transition:all .3s ease;
+
+}
+
+/* ===================================
+   CARD HOVER
+=================================== */
+
+.checkout-card:hover,
+.summary-card:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 12px 25px rgba(0,0,0,.08);
+
+}
+
+/* ===================================
+   PAYMENT SELECTED EFFECT
+=================================== */
+
+.payment-option:has(input:checked){
+
+border:2px solid #28a745;
+
+background:#f4fff5;
+
+}
+
+/* ===================================
+   BUTTON ACTIVE
+=================================== */
+
+.place-order-btn:active{
+
+transform:scale(.98);
+
+}
+
+/* ===================================
+   SCROLLBAR
+=================================== */
+
+::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#28a745;
+
+border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#f2f2f2;
+
+}
+
+/* ===================================
+   FADE ANIMATION
+=================================== */
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+.checkout-card,
+.summary-card{
+
+animation:fadeIn .5s ease;
+
+}

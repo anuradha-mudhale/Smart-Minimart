@@ -1,0 +1,49 @@
+.orders-title{
+    margin-bottom:20px;
+}
+
+.orders-table{
+    width:100%;
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    border-collapse:collapse;
+}
+
+.orders-table th{
+    background:#f4f4f4;
+    padding:15px;
+    text-align:left;
+}
+
+.orders-table td{
+    padding:15px;
+    border-top:1px solid #eee;
+}
+
+.status{
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.pending{
+    background:#fff7ed;
+    color:#ea580c;
+}
+
+.delivered{
+    background:#dcfce7;
+    color:#16a34a;
+}
+
+.cancelled{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+select{
+    padding:8px;
+    border-radius:8px;
+}

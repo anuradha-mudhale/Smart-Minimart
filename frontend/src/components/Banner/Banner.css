@@ -1,0 +1,25 @@
+.banner{
+    height:300px;
+    background:#dff5dd;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    padding:40px;
+}
+
+.banner-content h1{
+    font-size:40px;
+}
+
+.banner-content p{
+    margin:20px 0;
+}
+
+.banner-content button{
+    padding:12px 25px;
+    border:none;
+    background:green;
+    color:white;
+    cursor:pointer;
+    border-radius:5px;
+}

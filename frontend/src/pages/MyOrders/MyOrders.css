@@ -1,0 +1,134 @@
+.orders-page{
+    padding:25px;
+
+    background:#f5f5f5;
+
+    min-height:100vh;
+}
+
+.orders-page h2{
+    margin-bottom:20px;
+}
+
+/* BILL CARD */
+
+.bill-card{
+    background:white;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    margin-bottom:25px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* HEADER */
+
+.bill-header{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+    border-bottom:1px solid #eee;
+
+    padding-bottom:15px;
+}
+
+.status{
+    background:#16a34a;
+
+    color:white;
+
+    padding:8px 15px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+    font-weight:600;
+}
+
+/* TABLE */
+
+.bill-table{
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+.bill-table th{
+    background:#f3f4f6;
+
+    padding:12px;
+
+    text-align:center;
+}
+
+.bill-table td{
+    padding:12px;
+
+    text-align:center;
+
+    border-bottom:1px solid #eee;
+}
+
+/* FOOTER */
+
+.bill-footer{
+    margin-top:20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+}
+
+.grand-total{
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#16a34a;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .orders-page{
+        padding:12px;
+    }
+
+    .bill-card{
+        padding:15px;
+
+        overflow-x:auto;
+    }
+
+    .bill-header{
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:10px;
+    }
+
+    .bill-table{
+        min-width:500px;
+    }
+
+    .grand-total{
+        font-size:18px;
+    }
+}

@@ -1,0 +1,76 @@
+.blink-sidebar{
+
+    width:260px;
+
+    min-height:100vh;
+
+    position:fixed;
+
+    left:0;
+
+    top:0;
+
+    background:
+    linear-gradient(
+        180deg,
+        #0f172a,
+        #111827
+    );
+
+    color:white;
+
+    padding:25px;
+}
+
+.blink-logo{
+
+    margin-bottom:40px;
+}
+
+.blink-logo h1{
+
+    color:#facc15;
+
+    font-size:32px;
+
+    margin:0;
+}
+
+.blink-logo span{
+
+    color:white;
+}
+
+.blink-logo p{
+
+    margin-top:5px;
+
+    color:#cbd5e1;
+}
+
+.blink-menu{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+}
+
+.blink-menu a{
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    transition:0.3s;
+}
+
+.blink-menu a:hover{
+
+    background:#22c55e;
+}

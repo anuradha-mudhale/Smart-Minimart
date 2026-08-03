@@ -1,0 +1,224 @@
+/* =========================================
+   AMAZON STYLE PRODUCT DETAILS PAGE
+========================================= */
+
+.product-details {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 40px;
+  display: flex;
+  gap: 50px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  align-items: flex-start;
+}
+
+/* ================= IMAGE SECTION ================= */
+
+.product-image {
+  flex: 1;
+  background: #f8f8f8;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-image img {
+  width: 100%;
+  max-width: 450px;
+  height: 450px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.product-image img:hover {
+  transform: scale(1.05);
+}
+
+/* ================= INFO SECTION ================= */
+
+.product-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Product Title */
+.product-info h2 {
+  font-size: 38px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Price */
+.price {
+  font-size: 34px;
+  font-weight: 700;
+  color: #b12704; /* Amazon price color */
+  margin: 0;
+}
+
+/* Description */
+.desc {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #4b5563;
+  margin: 0;
+}
+
+/* Stock Badge */
+.stock {
+  display: inline-block;
+  width: fit-content;
+  padding: 8px 16px;
+  background: #e8f5e9;
+  color: #15803d;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 999px;
+}
+
+/* ================= BUTTONS ================= */
+
+.product-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-cart,
+.btn-wishlist {
+  border: none;
+  outline: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 190px;
+}
+
+/* Add to Cart */
+.btn-cart {
+  background: #0d8a2f; /* Amazon yellow */
+  color: #111;
+}
+
+.btn-cart:hover {
+  background: #f7ca00;
+  transform: translateY(-2px);
+}
+
+/* Wishlist */
+.btn-wishlist {
+  background: #ffffff;
+  color: #e11d48;
+  border: 2px solid #e11d48;
+}
+
+.btn-wishlist:hover {
+  background: #e11d48;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* ================= EXTRA INFO BOX ================= */
+
+.product-info::after {
+  content: "Free Delivery • 7 Days Return • Secure Payment";
+  margin-top: 20px;
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.8;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 15px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 992px) {
+  .product-details {
+    gap: 30px;
+    padding: 30px;
+  }
+
+  .product-image img {
+    max-width: 380px;
+    height: 380px;
+  }
+
+  .product-info h2 {
+    font-size: 32px;
+  }
+
+  .price {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-details {
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .product-image img {
+    height: 300px;
+  }
+
+  .product-info h2 {
+    font-size: 28px;
+  }
+
+  .price {
+    font-size: 26px;
+  }
+
+  .product-actions {
+    flex-direction: column;
+  }
+
+  .btn-cart,
+  .btn-wishlist {
+    width: 100%;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-details {
+    margin: 10px;
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .product-image {
+    padding: 15px;
+  }
+
+  .product-image img {
+    height: 240px;
+  }
+
+  .product-info h2 {
+    font-size: 24px;
+  }
+
+  .price {
+    font-size: 22px;
+  }
+
+  .desc {
+    font-size: 14px;
+  }
+}

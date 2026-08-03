@@ -1,0 +1,51 @@
+.admin-content{
+    padding:30px;
+}
+
+.coupon-form{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:15px;
+    margin:25px 0;
+}
+
+.coupon-form input,
+.coupon-form select{
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+.coupon-form button{
+    background:#2e7d32;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.coupon-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.coupon-table th,
+.coupon-table td{
+    border:1px solid #ddd;
+    padding:12px;
+    text-align:center;
+}
+
+.coupon-table th{
+    background:#2e7d32;
+    color:white;
+}
+
+.delete-btn{
+    background:red;
+    color:white;
+    border:none;
+    padding:8px 14px;
+    border-radius:5px;
+    cursor:pointer;
+}

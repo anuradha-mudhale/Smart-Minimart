@@ -1,0 +1,99 @@
+.admin-layout{
+
+    display:flex;
+
+    background:#f1f5f9;
+
+    min-height:100vh;
+}
+
+.admin-content{
+
+    flex:1;
+
+    margin-left:260px;
+
+    padding:25px;
+}
+
+.dashboard-title{
+
+    font-size:32px;
+
+    margin-bottom:25px;
+
+    font-weight:700;
+}
+
+.dashboard-cards{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(240px,1fr));
+
+    gap:20px;
+}
+
+.dashboard-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,0.06);
+
+    transition:0.3s;
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-5px);
+}
+
+.dashboard-card h3{
+
+    color:#64748b;
+
+    font-size:15px;
+
+    margin-bottom:10px;
+}
+
+.dashboard-card p{
+
+    font-size:34px;
+
+    font-weight:700;
+}
+
+.orders{
+    border-left:6px solid #22c55e;
+}
+
+.revenue{
+    border-left:6px solid #f59e0b;
+}
+
+.products{
+    border-left:6px solid #3b82f6;
+}
+
+.customers{
+    border-left:6px solid #8b5cf6;
+}
+
+.pending{
+    border-left:6px solid #f97316;
+}
+
+.delivered{
+    border-left:6px solid #22c55e;
+}
+
+.cancelled{
+    border-left:6px solid #ef4444;
+}
