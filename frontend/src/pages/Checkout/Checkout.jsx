@@ -1,10 +1,712 @@
+  // import "./Checkout.css";
+  // import { useState, useEffect } from "react";
+  // import axios from "axios";
+  // import {
+  //   FaMapMarkerAlt,
+  //   FaCreditCard,
+  //   FaGooglePay,
+  //   FaMoneyBillWave,
+  //   FaShieldAlt,
+  //   FaTag
+  // } from "react-icons/fa";
+
+  // function Checkout() {
+
+  //   const token = localStorage.getItem("token");
+
+  //   const [cartItems, setCartItems] = useState([]);
+
+  //   const [subtotal, setSubtotal] = useState(0);
+
+  //   const [deliveryCharge] = useState(40);
+
+  //   const [discount, setDiscount] = useState(0);
+
+  //   const [coupon, setCoupon] = useState("");
+
+  //   const [couponId, setCouponId] = useState(null);
+
+  //   const [formData, setFormData] = useState({
+
+  //     name:"",
+  //     mobile:"",
+  //     address:"",
+  //     pincode:"",
+  //     payment:""
+
+  //   });
+
+  //   useEffect(()=>{
+
+  //     fetchCart();
+
+  //   },[]);
+
+  //   const fetchCart = async()=>{
+
+  //     try{
+
+  //       const res = await axios.get(
+
+  //         "http://localhost:5000/api/cart",
+
+  //         {
+
+  //           headers:{
+  //             Authorization:`Bearer ${token}`
+  //           }
+
+  //         }
+
+  //       );
+
+  //       setCartItems(res.data);
+
+  //       let total=0;
+
+  //       res.data.forEach(item=>{
+
+  //         total += Number(item.total);
+
+  //       });
+
+  //       setSubtotal(total);
+
+  //     }
+
+  //     catch(err){
+
+  //       console.log(err);
+
+  //     }
+
+  //   };
+
+  //   const applyCoupon = async()=>{
+
+  //     if(!coupon){
+
+  //       alert("Enter Coupon");
+
+  //       return;
+
+  //     }
+
+  //     try{
+
+  //       const res = await axios.post(
+
+  //         "http://localhost:5000/api/coupons/apply",
+
+  //         {
+
+  //           code:coupon,
+  //           total:subtotal
+
+  //         },
+
+  //         {
+
+  //           headers:{
+  //             Authorization:`Bearer ${token}`
+  //           }
+
+  //         }
+
+  //       );
+
+  //       setCouponId(res.data.coupon_id);
+
+  //       setDiscount(Number(res.data.discount));
+
+  //       alert("Coupon Applied");
+
+  //     }
+
+  //     catch(err){
+
+  //       alert(
+
+  //         err.response?.data?.message ||
+
+  //         "Invalid Coupon"
+
+  //       );
+
+  //     }
+
+  //   };
+
+  //   const handleChange=(e)=>{
+
+  //     setFormData({
+
+  //       ...formData,
+
+  //       [e.target.name]:e.target.value
+
+  //     });
+
+  //   };
+
+  //   const placeOrder = async()=>{
+
+  //     const{
+
+  //       name,
+  //       mobile,
+  //       address,
+  //       pincode,
+  //       payment
+
+  //     }=formData;
+
+  //     if(
+
+  //       !name ||
+  //       !mobile ||
+  //       !address ||
+  //       !pincode ||
+  //       !payment
+
+  //     ){
+
+  //       alert("Please fill all details");
+
+  //       return;
+
+  //     }
+
+  //     try{
+
+  //       const res = await axios.post(
+
+  //         "http://localhost:5000/api/orders/checkout",
+
+  //         {
+
+  //           payment_method:payment,
+
+  //           coupon_id:couponId
+
+  //         },
+
+  //         {
+
+  //           headers:{
+  //             Authorization:`Bearer ${token}`
+  //           }
+
+  //         }
+
+  //       );
+
+  //       alert(res.data.message);
+
+  //       window.location="/";
+
+  //     }
+
+  //     catch(err){
+
+  //       console.log(err);
+
+  //       alert("Order Failed");
+
+  //     }
+
+  //   };
+
+  //   const total=subtotal+deliveryCharge-discount;
+
+  //   return(
+
+  // <div className="checkout-page">
+
+  // <div className="checkout-container">
+
+  // {/* LEFT */}
+
+  // <div className="checkout-left">
+
+  // <div className="checkout-header">
+
+  // <h1>
+
+  // Checkout
+
+  // </h1>
+
+  // <p>
+
+  // Complete your order securely.
+
+  // </p>
+
+  // </div>
+
+  // <div className="checkout-card">
+
+  // <h2>
+
+  // <FaMapMarkerAlt/>
+
+  // Shipping Address
+
+  // </h2>
+
+  // <div className="input-grid">
+
+  // <div className="input-group">
+
+  // <label>
+
+  // Full Name
+
+  // </label>
+
+  // <input
+
+  // type="text"
+
+  // name="name"
+
+  // placeholder="Enter Full Name"
+
+  // value={formData.name}
+
+  // onChange={handleChange}
+
+  // />
+
+  // </div>
+
+  // <div className="input-group">
+
+  // <label>
+
+  // Mobile Number
+
+  // </label>
+
+  // <input
+
+  // type="text"
+
+  // name="mobile"
+
+  // placeholder="Enter Mobile Number"
+
+  // value={formData.mobile}
+
+  // onChange={handleChange}
+
+  // />
+
+  // </div>
+
+  // </div>
+
+  // <div className="input-group">
+
+  // <label>
+
+  // Full Address
+
+  // </label>
+
+  // <textarea
+
+  // rows="4"
+
+  // name="address"
+
+  // placeholder="House No, Street, Area"
+
+  // value={formData.address}
+
+  // onChange={handleChange}
+
+  // />
+
+  // </div>
+
+  // <div className="input-group">
+
+  // <label>
+
+  // Pincode
+
+  // </label>
+
+  // <input
+
+  // type="text"
+
+  // name="pincode"
+
+  // placeholder="Enter Pincode"
+
+  // value={formData.pincode}
+
+  // onChange={handleChange}
+
+  // />
+
+  // </div>
+
+  // </div>
+
+  // <div className="checkout-card">
+
+  // <h2>
+
+  // <FaCreditCard/>
+
+  // Payment Method
+
+  // </h2>
+
+  // <label className="payment-option">
+
+  // <input
+
+  // type="radio"
+
+  // name="payment"
+
+  // value="UPI"
+
+  // onChange={handleChange}
+
+  // />
+
+  // <div>
+
+  // <h4>
+
+  // <FaGooglePay/>
+
+  // UPI Payment
+
+  // </h4>
+
+  // <p>
+
+  // Google Pay, PhonePe, Paytm
+
+  // </p>
+
+  // </div>
+
+  // </label>
+
+  // <label className="payment-option">
+
+  // <input
+
+  // type="radio"
+
+  // name="payment"
+
+  // value="CARD"
+
+  // onChange={handleChange}
+
+  // />
+
+  // <div>
+
+  // <h4>
+
+  // <FaCreditCard/>
+
+  // Card Payment
+
+  // </h4>
+
+  // <p>
+
+  // Visa, Mastercard, RuPay
+
+  // </p>
+
+  // </div>
+
+  // </label>
+
+  // <label className="payment-option">
+
+  // <input
+
+  // type="radio"
+
+  // name="payment"
+
+  // value="COD"
+
+  // onChange={handleChange}
+
+  // />
+
+  // <div>
+
+  // <h4>
+
+  // <FaMoneyBillWave/>
+
+  // Cash On Delivery
+
+  // </h4>
+
+  // <p>
+
+  // Pay after delivery
+
+  // </p>
+
+  // </div>
+
+  // </label>
+
+  // </div>
+  // </div>   {/* checkout-card */}
+
+  // </div>   {/* checkout-left */}
+
+  // {/* RIGHT SIDE */}
+
+  // <div className="checkout-right">
+
+  //       {/* ================= RIGHT SIDE ================= */}
+
+  //       <div className="checkout-right">
+
+  //         <div className="summary-card">
+
+  //           <h2>Order Summary</h2>
+
+  //           <div className="cart-items">
+
+  //             {
+  //               cartItems.length === 0 ?
+
+  //               <p className="empty-cart">
+
+  //                 Your cart is empty
+
+  //               </p>
+
+  //               :
+
+  //               cartItems.map((item)=>(
+
+  //                 <div
+  //                   className="cart-item"
+  //                   key={item.id}
+  //                 >
+
+  //                   <img
+  //                     src={item.image_url}
+  //                     alt={item.name}
+  //                   />
+
+  //                   <div className="cart-details">
+
+  //                     <h4>{item.name}</h4>
+
+  //                     <p>
+
+  //                       Qty : {item.quantity}
+
+  //                     </p>
+
+  //                   </div>
+
+  //                   <h4>
+
+  //                     ₹ {item.total}
+
+  //                   </h4>
+
+  //                 </div>
+
+  //               ))
+
+  //             }
+
+  //           </div>
+
+  //           {/* Coupon */}
+
+  //           <div className="coupon-section">
+
+  //             <h3>
+
+  //               <FaTag/>
+
+  //               Apply Coupon
+
+  //             </h3>
+
+  //             <div className="coupon-box">
+
+  //               <input
+
+  //                 type="text"
+
+  //                 placeholder="Enter Coupon"
+
+  //                 value={coupon}
+
+  //                 onChange={(e)=>setCoupon(e.target.value)}
+
+  //               />
+
+  //               <button
+
+  //                 onClick={applyCoupon}
+
+  //               >
+
+  //                 Apply
+
+  //               </button>
+
+  //             </div>
+
+  //           </div>
+
+  //           {/* Price Details */}
+
+  //           <div className="price-details">
+
+  //             <div className="price-row">
+
+  //               <span>
+
+  //                 Subtotal
+
+  //               </span>
+
+  //               <span>
+
+  //                 ₹ {subtotal.toFixed(2)}
+
+  //               </span>
+
+  //             </div>
+
+  //             <div className="price-row">
+
+  //               <span>
+
+  //                 Delivery Charge
+
+  //               </span>
+
+  //               <span>
+
+  //                 ₹ {deliveryCharge.toFixed(2)}
+
+  //               </span>
+
+  //             </div>
+
+  //             <div className="price-row">
+
+  //               <span>
+
+  //                 Discount
+
+  //               </span>
+
+  //               <span className="discount">
+
+  //                 - ₹ {discount.toFixed(2)}
+
+  //               </span>
+
+  //             </div>
+
+  //             <hr/>
+
+  //             <div className="price-row total">
+
+  //               <strong>
+
+  //                 Total Amount
+
+  //               </strong>
+
+  //               <strong>
+
+  //                 ₹ {total.toFixed(2)}
+
+  //               </strong>
+
+  //             </div>
+
+  //           </div>
+
+  //           {/* Secure */}
+
+  //           <div className="secure-payment">
+
+  //             <FaShieldAlt/>
+
+  //             <div>
+
+  //               <h4>
+
+  //                 Secure Payment
+
+  //               </h4>
+
+  //               <p>
+
+  //                 100% encrypted & safe checkout
+
+  //               </p>
+
+  //             </div>
+
+  //           </div>
+
+  //           {/* Button */}
+
+  //           <button
+
+  //             className="place-order-btn"
+
+  //             onClick={placeOrder}
+
+  //           >
+
+  //             Continue to Payment →
+
+  //           </button>
+
+  //         </div>
+
+  //       </div>
+
+  //     </div>
+
+  //   </div>
+
+  // );
+
+  // }
+
+  // export default Checkout;
+
 import "./Checkout.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+
 import {
   FaMapMarkerAlt,
-  FaCreditCard,
-  FaGooglePay,
   FaMoneyBillWave,
   FaShieldAlt,
   FaTag
@@ -28,23 +730,27 @@ function Checkout() {
 
   const [formData, setFormData] = useState({
 
-    name:"",
-    mobile:"",
-    address:"",
-    pincode:"",
-    payment:""
+    name: "",
+    mobile: "",
+    address: "",
+    pincode: "",
+    payment: "COD"
 
   });
 
-  useEffect(()=>{
+
+  // ================= FETCH CART =================
+
+  useEffect(() => {
 
     fetchCart();
 
-  },[]);
+  }, []);
 
-  const fetchCart = async()=>{
 
-    try{
+  const fetchCart = async () => {
+
+    try {
 
       const res = await axios.get(
 
@@ -52,8 +758,8 @@ function Checkout() {
 
         {
 
-          headers:{
-            Authorization:`Bearer ${token}`
+          headers: {
+            Authorization: `Bearer ${token}`
           }
 
         }
@@ -62,9 +768,9 @@ function Checkout() {
 
       setCartItems(res.data);
 
-      let total=0;
+      let total = 0;
 
-      res.data.forEach(item=>{
+      res.data.forEach(item => {
 
         total += Number(item.total);
 
@@ -74,7 +780,7 @@ function Checkout() {
 
     }
 
-    catch(err){
+    catch (err) {
 
       console.log(err);
 
@@ -82,9 +788,12 @@ function Checkout() {
 
   };
 
-  const applyCoupon = async()=>{
 
-    if(!coupon){
+  // ================= APPLY COUPON =================
+
+  const applyCoupon = async () => {
+
+    if (!coupon) {
 
       alert("Enter Coupon");
 
@@ -92,7 +801,7 @@ function Checkout() {
 
     }
 
-    try{
+    try {
 
       const res = await axios.post(
 
@@ -100,15 +809,16 @@ function Checkout() {
 
         {
 
-          code:coupon,
-          total:subtotal
+          code: coupon,
+
+          total: subtotal
 
         },
 
         {
 
-          headers:{
-            Authorization:`Bearer ${token}`
+          headers: {
+            Authorization: `Bearer ${token}`
           }
 
         }
@@ -123,7 +833,7 @@ function Checkout() {
 
     }
 
-    catch(err){
+    catch (err) {
 
       alert(
 
@@ -137,39 +847,52 @@ function Checkout() {
 
   };
 
-  const handleChange=(e)=>{
+
+  // ================= HANDLE INPUT =================
+
+  const handleChange = (e) => {
 
     setFormData({
 
       ...formData,
 
-      [e.target.name]:e.target.value
+      [e.target.name]: e.target.value
 
     });
 
   };
 
-  const placeOrder = async()=>{
 
-    const{
+  // ================= PLACE ORDER =================
+
+  const placeOrder = async () => {
+
+    const {
 
       name,
+
       mobile,
+
       address,
+
       pincode,
+
       payment
 
-    }=formData;
+    } = formData;
 
-    if(
+
+    if (
 
       !name ||
-      !mobile ||
-      !address ||
-      !pincode ||
-      !payment
 
-    ){
+      !mobile ||
+
+      !address ||
+
+      !pincode
+
+    ) {
 
       alert("Please fill all details");
 
@@ -177,7 +900,8 @@ function Checkout() {
 
     }
 
-    try{
+
+    try {
 
       const res = await axios.post(
 
@@ -185,16 +909,18 @@ function Checkout() {
 
         {
 
-          payment_method:payment,
+          payment_method: payment,
 
-          coupon_id:couponId
+          coupon_id: couponId
 
         },
 
         {
 
-          headers:{
-            Authorization:`Bearer ${token}`
+          headers: {
+
+            Authorization: `Bearer ${token}`
+
           }
 
         }
@@ -203,500 +929,522 @@ function Checkout() {
 
       alert(res.data.message);
 
-      window.location="/";
+      window.location = "/";
 
     }
 
-    catch(err){
+    catch (err) {
 
       console.log(err);
 
-      alert("Order Failed");
+      alert(
+
+        err.response?.data?.message ||
+
+        "Order Failed"
+
+      );
 
     }
 
   };
 
-  const total=subtotal+deliveryCharge-discount;
 
-  return(
+  // ================= TOTAL =================
 
-<div className="checkout-page">
+  const total =
 
-<div className="checkout-container">
+    subtotal +
 
-{/* LEFT */}
+    deliveryCharge -
 
-<div className="checkout-left">
+    discount;
 
-<div className="checkout-header">
 
-<h1>
+  return (
 
-Checkout
+    <div className="checkout-page">
 
-</h1>
+      <div className="checkout-container">
 
-<p>
 
-Complete your order securely.
+        {/* ================= LEFT SIDE ================= */}
 
-</p>
+        <div className="checkout-left">
 
-</div>
 
-<div className="checkout-card">
+          <div className="checkout-header">
 
-<h2>
+            <h1>
 
-<FaMapMarkerAlt/>
+              Checkout
 
-Shipping Address
+            </h1>
 
-</h2>
+            <p>
 
-<div className="input-grid">
+              Complete your order securely.
 
-<div className="input-group">
-
-<label>
-
-Full Name
-
-</label>
-
-<input
-
-type="text"
-
-name="name"
-
-placeholder="Enter Full Name"
-
-value={formData.name}
-
-onChange={handleChange}
-
-/>
-
-</div>
-
-<div className="input-group">
-
-<label>
-
-Mobile Number
-
-</label>
-
-<input
-
-type="text"
-
-name="mobile"
-
-placeholder="Enter Mobile Number"
-
-value={formData.mobile}
-
-onChange={handleChange}
-
-/>
-
-</div>
-
-</div>
-
-<div className="input-group">
-
-<label>
-
-Full Address
-
-</label>
-
-<textarea
-
-rows="4"
-
-name="address"
-
-placeholder="House No, Street, Area"
-
-value={formData.address}
-
-onChange={handleChange}
-
-/>
-
-</div>
-
-<div className="input-group">
-
-<label>
-
-Pincode
-
-</label>
-
-<input
-
-type="text"
-
-name="pincode"
-
-placeholder="Enter Pincode"
-
-value={formData.pincode}
-
-onChange={handleChange}
-
-/>
-
-</div>
-
-</div>
-
-<div className="checkout-card">
-
-<h2>
-
-<FaCreditCard/>
-
-Payment Method
-
-</h2>
-
-<label className="payment-option">
-
-<input
-
-type="radio"
-
-name="payment"
-
-value="UPI"
-
-onChange={handleChange}
-
-/>
-
-<div>
-
-<h4>
-
-<FaGooglePay/>
-
-UPI Payment
-
-</h4>
-
-<p>
-
-Google Pay, PhonePe, Paytm
-
-</p>
-
-</div>
-
-</label>
-
-<label className="payment-option">
-
-<input
-
-type="radio"
-
-name="payment"
-
-value="CARD"
-
-onChange={handleChange}
-
-/>
-
-<div>
-
-<h4>
-
-<FaCreditCard/>
-
-Card Payment
-
-</h4>
-
-<p>
-
-Visa, Mastercard, RuPay
-
-</p>
-
-</div>
-
-</label>
-
-<label className="payment-option">
-
-<input
-
-type="radio"
-
-name="payment"
-
-value="COD"
-
-onChange={handleChange}
-
-/>
-
-<div>
-
-<h4>
-
-<FaMoneyBillWave/>
-
-Cash On Delivery
-
-</h4>
-
-<p>
-
-Pay after delivery
-
-</p>
-
-</div>
-
-</label>
-
-</div>
-</div>   {/* checkout-card */}
-
-</div>   {/* checkout-left */}
-
-{/* RIGHT SIDE */}
-
-<div className="checkout-right">
-
-      {/* ================= RIGHT SIDE ================= */}
-
-      <div className="checkout-right">
-
-        <div className="summary-card">
-
-          <h2>Order Summary</h2>
-
-          <div className="cart-items">
-
-            {
-              cartItems.length === 0 ?
-
-              <p className="empty-cart">
-
-                Your cart is empty
-
-              </p>
-
-              :
-
-              cartItems.map((item)=>(
-
-                <div
-                  className="cart-item"
-                  key={item.id}
-                >
-
-                  <img
-                    src={item.image_url}
-                    alt={item.name}
-                  />
-
-                  <div className="cart-details">
-
-                    <h4>{item.name}</h4>
-
-                    <p>
-
-                      Qty : {item.quantity}
-
-                    </p>
-
-                  </div>
-
-                  <h4>
-
-                    ₹ {item.total}
-
-                  </h4>
-
-                </div>
-
-              ))
-
-            }
+            </p>
 
           </div>
 
-          {/* Coupon */}
 
-          <div className="coupon-section">
+          {/* ================= SHIPPING ADDRESS ================= */}
 
-            <h3>
+          <div className="checkout-card">
 
-              <FaTag/>
+            <h2>
 
-              Apply Coupon
+              <FaMapMarkerAlt />
 
-            </h3>
+              Shipping Address
 
-            <div className="coupon-box">
+            </h2>
+
+
+            <div className="input-grid">
+
+
+              {/* Full Name */}
+
+              <div className="input-group">
+
+                <label>
+
+                  Full Name
+
+                </label>
+
+                <input
+
+                  type="text"
+
+                  name="name"
+
+                  placeholder="Enter Full Name"
+
+                  value={formData.name}
+
+                  onChange={handleChange}
+
+                />
+
+              </div>
+
+
+              {/* Mobile */}
+
+              <div className="input-group">
+
+                <label>
+
+                  Mobile Number
+
+                </label>
+
+                <input
+
+                  type="text"
+
+                  name="mobile"
+
+                  placeholder="Enter Mobile Number"
+
+                  value={formData.mobile}
+
+                  onChange={handleChange}
+
+                />
+
+              </div>
+
+
+            </div>
+
+
+            {/* Address */}
+
+            <div className="input-group">
+
+              <label>
+
+                Full Address
+
+              </label>
+
+              <textarea
+
+                rows="4"
+
+                name="address"
+
+                placeholder="House No, Street, Area"
+
+                value={formData.address}
+
+                onChange={handleChange}
+
+              />
+
+            </div>
+
+
+            {/* Pincode */}
+
+            <div className="input-group">
+
+              <label>
+
+                Pincode
+
+              </label>
 
               <input
 
                 type="text"
 
-                placeholder="Enter Coupon"
+                name="pincode"
 
-                value={coupon}
+                placeholder="Enter Pincode"
 
-                onChange={(e)=>setCoupon(e.target.value)}
+                value={formData.pincode}
+
+                onChange={handleChange}
 
               />
 
-              <button
-
-                onClick={applyCoupon}
-
-              >
-
-                Apply
-
-              </button>
-
             </div>
+
 
           </div>
 
-          {/* Price Details */}
 
-          <div className="price-details">
+          {/* ================= PAYMENT METHOD ================= */}
 
-            <div className="price-row">
+          <div className="checkout-card">
 
-              <span>
+            <h2>
 
-                Subtotal
+              <FaMoneyBillWave />
 
-              </span>
+              Payment Method
 
-              <span>
+            </h2>
 
-                ₹ {subtotal.toFixed(2)}
 
-              </span>
+            {/* COD ONLY */}
 
-            </div>
+            <label className="payment-option">
 
-            <div className="price-row">
+              <input
 
-              <span>
+                type="radio"
 
-                Delivery Charge
+                name="payment"
 
-              </span>
+                value="COD"
 
-              <span>
+                checked={formData.payment === "COD"}
 
-                ₹ {deliveryCharge.toFixed(2)}
+                onChange={handleChange}
 
-              </span>
+              />
 
-            </div>
 
-            <div className="price-row">
+              <div>
 
-              <span>
+                <h4>
 
-                Discount
+                  <FaMoneyBillWave />
 
-              </span>
+                  Cash On Delivery
 
-              <span className="discount">
+                </h4>
 
-                - ₹ {discount.toFixed(2)}
+                <p>
 
-              </span>
+                  Pay after delivery
 
-            </div>
+                </p>
 
-            <hr/>
+              </div>
 
-            <div className="price-row total">
+            </label>
 
-              <strong>
-
-                Total Amount
-
-              </strong>
-
-              <strong>
-
-                ₹ {total.toFixed(2)}
-
-              </strong>
-
-            </div>
 
           </div>
 
-          {/* Secure */}
-
-          <div className="secure-payment">
-
-            <FaShieldAlt/>
-
-            <div>
-
-              <h4>
-
-                Secure Payment
-
-              </h4>
-
-              <p>
-
-                100% encrypted & safe checkout
-
-              </p>
-
-            </div>
-
-          </div>
-
-          {/* Button */}
-
-          <button
-
-            className="place-order-btn"
-
-            onClick={placeOrder}
-
-          >
-
-            Continue to Payment →
-
-          </button>
 
         </div>
+
+
+        {/* ================= RIGHT SIDE ================= */}
+
+        <div className="checkout-right">
+
+
+          <div className="summary-card">
+
+
+            <h2>
+
+              Order Summary
+
+            </h2>
+
+
+            {/* ================= CART ITEMS ================= */}
+
+            <div className="cart-items">
+
+              {
+
+                cartItems.length === 0 ?
+
+                  <p className="empty-cart">
+
+                    Your cart is empty
+
+                  </p>
+
+                  :
+
+                  cartItems.map((item) => (
+
+                    <div
+
+                      className="cart-item"
+
+                      key={item.id}
+
+                    >
+
+                      <img
+
+                        src={item.image_url}
+
+                        alt={item.name}
+
+                      />
+
+
+                      <div className="cart-details">
+
+                        <h4>
+
+                          {item.name}
+
+                        </h4>
+
+                        <p>
+
+                          Qty : {item.quantity}
+
+                        </p>
+
+                      </div>
+
+
+                      <h4>
+
+                        ₹ {item.total}
+
+                      </h4>
+
+
+                    </div>
+
+                  ))
+
+              }
+
+            </div>
+
+
+            {/* ================= COUPON ================= */}
+
+            <div className="coupon-section">
+
+              <h3>
+
+                <FaTag />
+
+                Apply Coupon
+
+              </h3>
+
+
+              <div className="coupon-box">
+
+                <input
+
+                  type="text"
+
+                  placeholder="Enter Coupon"
+
+                  value={coupon}
+
+                  onChange={(e) =>
+
+                    setCoupon(e.target.value)
+
+                  }
+
+                />
+
+
+                <button
+
+                  onClick={applyCoupon}
+
+                >
+
+                  Apply
+
+                </button>
+
+              </div>
+
+            </div>
+
+
+            {/* ================= PRICE DETAILS ================= */}
+
+            <div className="price-details">
+
+
+              <div className="price-row">
+
+                <span>
+
+                  Subtotal
+
+                </span>
+
+                <span>
+
+                  ₹ {subtotal.toFixed(2)}
+
+                </span>
+
+              </div>
+
+
+              <div className="price-row">
+
+                <span>
+
+                  Delivery Charge
+
+                </span>
+
+                <span>
+
+                  ₹ {deliveryCharge.toFixed(2)}
+
+                </span>
+
+              </div>
+
+
+              <div className="price-row">
+
+                <span>
+
+                  Discount
+
+                </span>
+
+                <span className="discount">
+
+                  - ₹ {discount.toFixed(2)}
+
+                </span>
+
+              </div>
+
+
+              <hr />
+
+
+              <div className="price-row total">
+
+                <strong>
+
+                  Total Amount
+
+                </strong>
+
+                <strong>
+
+                  ₹ {total.toFixed(2)}
+
+                </strong>
+
+              </div>
+
+
+            </div>
+
+
+            {/* ================= SECURITY ================= */}
+
+            <div className="secure-payment">
+
+              <FaShieldAlt />
+
+
+              <div>
+
+                <h4>
+
+                  Secure Checkout
+
+                </h4>
+
+                <p>
+
+                  Payment will be collected through
+
+                  Cash on Delivery.
+
+                </p>
+
+              </div>
+
+            </div>
+
+
+            {/* ================= PLACE ORDER ================= */}
+
+            <button
+
+              className="place-order-btn"
+
+              onClick={placeOrder}
+
+            >
+
+              Place Order →
+
+            </button>
+
+
+          </div>
+
+
+        </div>
+
 
       </div>
 
     </div>
 
-  </div>
-
-);
+  );
 
 }
 
+
 export default Checkout;
+

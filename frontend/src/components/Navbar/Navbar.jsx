@@ -1,342 +1,342 @@
-import "./Navbar.css";
+  import "./Navbar.css";
 
-import {
-  FaShoppingCart,
-  FaHeart,
-  FaSearch,
-  FaUserCircle,
-  FaBoxOpen,
-  FaSignOutAlt
-} from "react-icons/fa";
+  import {
+    FaShoppingCart,
+    FaHeart,
+    FaSearch,
+    FaUserCircle,
+    FaBoxOpen,
+    FaSignOutAlt
+  } from "react-icons/fa";
 
-import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
+  import { Link, useNavigate } from "react-router-dom";
+  import { useEffect, useState } from "react";
+  import axios from "axios";
 
-function Navbar({ search, setSearch }) {
+  function Navbar({ search, setSearch }) {
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user"))
-  );
+    const [user, setUser] = useState(
+      JSON.parse(localStorage.getItem("user"))
+    );
 
-  const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
-  const [cartCount, setCartCount] = useState(0);
-  const [wishlistCount, setWishlistCount] = useState(0);
+    const [cartCount, setCartCount] = useState(0);
+    const [wishlistCount, setWishlistCount] = useState(0);
 
-  // ==========================
-  // FETCH CART COUNT
-  // ==========================
-  const fetchCartCount = async () => {
+    // ==========================
+    // FETCH CART COUNT
+    // ==========================
+    const fetchCartCount = async () => {
 
-    try {
+      try {
 
-      if (!token) {
+        if (!token) {
 
-        setCartCount(0);
-        return;
+          setCartCount(0);
+          return;
+
+        }
+
+        const res = await axios.get(
+          "http://localhost:5000/api/cart",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+        );
+
+        setCartCount(res.data.length);
+
+      } catch (err) {
+
+        console.log(err);
 
       }
+    };
 
-      const res = await axios.get(
-        "http://localhost:5000/api/cart",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
+    // ==========================
+    // FETCH WISHLIST COUNT
+    // ==========================
+    const fetchWishlistCount = async () => {
+
+      try {
+
+        if (!token) {
+
+          setWishlistCount(0);
+          return;
+
         }
-      );
 
-      setCartCount(res.data.length);
+        const res = await axios.get(
+          "http://localhost:5000/api/wishlist",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+        );
+        
 
-    } catch (err) {
+        setWishlistCount(res.data.length);
 
-      console.log(err);
+      } catch (err) {
 
-    }
-  };
-
-  // ==========================
-  // FETCH WISHLIST COUNT
-  // ==========================
-  const fetchWishlistCount = async () => {
-
-    try {
-
-      if (!token) {
-
-        setWishlistCount(0);
-        return;
+        console.log(err);
 
       }
+    };
 
-      const res = await axios.get(
-        "http://localhost:5000/api/wishlist",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      );
-      
-
-      setWishlistCount(res.data.length);
-
-    } catch (err) {
-
-      console.log(err);
-
-    }
-  };
-
-  useEffect(() => {
-
-    fetchCartCount();
-    fetchWishlistCount();
-
-    const handleAuthChange = () => {
-
-      setUser(
-        JSON.parse(localStorage.getItem("user"))
-      );
+    useEffect(() => {
 
       fetchCartCount();
       fetchWishlistCount();
 
-    };
+      const handleAuthChange = () => {
 
-    const handleWishlistUpdate = () => {
+        setUser(
+          JSON.parse(localStorage.getItem("user"))
+        );
 
-      fetchWishlistCount();
+        fetchCartCount();
+        fetchWishlistCount();
 
-    };
+      };
 
-    const handleCartUpdate = () => {
+      const handleWishlistUpdate = () => {
 
-  console.log("Cart update event received");
+        fetchWishlistCount();
 
-  fetchCartCount();
+      };
 
-};
+      const handleCartUpdate = () => {
 
-    window.addEventListener(
-      "authChange",
-      handleAuthChange
-    );
+    console.log("Cart update event received");
 
-    window.addEventListener(
-      "wishlistUpdated",
-      handleWishlistUpdate
-    );
+    fetchCartCount();
 
-    window.addEventListener(
-      "cartUpdated",
-      handleCartUpdate
-    );
+  };
 
-    return () => {
-
-      window.removeEventListener(
+      window.addEventListener(
         "authChange",
         handleAuthChange
       );
 
-      window.removeEventListener(
+      window.addEventListener(
         "wishlistUpdated",
         handleWishlistUpdate
       );
 
-      window.removeEventListener(
+      window.addEventListener(
         "cartUpdated",
         handleCartUpdate
       );
 
-    };
+      return () => {
 
-  }, []);
+        window.removeEventListener(
+          "authChange",
+          handleAuthChange
+        );
+
+        window.removeEventListener(
+          "wishlistUpdated",
+          handleWishlistUpdate
+        );
+
+        window.removeEventListener(
+          "cartUpdated",
+          handleCartUpdate
+        );
+
+      };
+
+    }, []);
 
 
-  return (
+    return (
 
-    <div className="navbar">
+      <div className="navbar">
 
-      {/* LOGO */}
+        {/* LOGO */}
 
-      <Link to="/" className="logo-link">
-        <h2 className="logo">
-          Smart Minimart
-        </h2>
-      </Link>
-
-      {/* SEARCH */}
-
-      <div className="search-box">
-
-        <input
-          type="text"
-          placeholder="Search products..."
-          value={search}
-          onChange={(e) =>
-            setSearch(e.target.value)
-          }
-        />
-
-        <button>
-          <FaSearch />
-        </button>
-
-      </div>
-
-      {/* RIGHT */}
-
-      <div className="nav-right">
-
-        {/* WISHLIST */}
-
-        <Link
-          to="/wishlist"
-          className="icon-container"
-        >
-
-          <FaHeart className="nav-icon" />
-
-          {wishlistCount > 0 && (
-
-            <span className="badge">
-
-              {wishlistCount}
-
-            </span>
-
-          )}
-
+        <Link to="/" className="logo-link">
+          <h2 className="logo">
+            Smart Minimart
+          </h2>
         </Link>
 
-        {/* CART */}
+        {/* SEARCH */}
 
-        <Link
-          to="/cart"
-          className="icon-container"
-        >
+        <div className="search-box">
 
-          <FaShoppingCart className="nav-icon" />
+          <input
+            type="text"
+            placeholder="Search products..."
+            value={search}
+            onChange={(e) =>
+              setSearch(e.target.value)
+            }
+          />
 
-          {cartCount > 0 && (
+          <button>
+            <FaSearch />
+          </button>
 
-            <span className="badge">
+        </div>
 
-              {cartCount}
+        {/* RIGHT */}
 
-            </span>
+        <div className="nav-right">
 
-          )}
+          {/* WISHLIST */}
 
-        </Link>
+          <Link
+            to="/wishlist"
+            className="icon-container"
+          >
 
-        {/* USER */}
+            <FaHeart className="nav-icon" />
 
-        {user ? (
+            {wishlistCount > 0 && (
 
-          <div className="profile-menu">
+              <span className="badge">
 
-            <div className="profile-icon">
-              <FaUserCircle />
-            </div>
+                {wishlistCount}
 
-            <div className="dropdown">
+              </span>
 
-              <div className="user-name">
+            )}
 
-                Hello,
-                <br />
+          </Link>
 
-                <strong>
-                  {user.name}
-                </strong>
+          {/* CART */}
 
+          <Link
+            to="/cart"
+            className="icon-container"
+          >
+
+            <FaShoppingCart className="nav-icon" />
+
+            {cartCount > 0 && (
+
+              <span className="badge">
+
+                {cartCount}
+
+              </span>
+
+            )}
+
+          </Link>
+
+          {/* USER */}
+
+          {user ? (
+
+            <div className="profile-menu">
+
+              <div className="profile-icon">
+                <FaUserCircle />
               </div>
 
-              <Link
-                to="/my-orders"
-                className="dropdown-link"
-              >
+              <div className="dropdown">
 
-                <div className="dropdown-item">
+                <div className="user-name">
 
-                  <FaBoxOpen />
+                  Hello,
+                  <br />
 
-                  My Orders
+                  <strong>
+                    {user.name}
+                  </strong>
 
                 </div>
 
-              </Link>
+                <Link
+                  to="/my-orders"
+                  className="dropdown-link"
+                >
 
-              <div
-                className="dropdown-item logout"
-                onClick={() => {
+                  <div className="dropdown-item">
 
-                  localStorage.removeItem("token");
-                  localStorage.removeItem("user");
+                    <FaBoxOpen />
 
-                  setUser(null);
+                    My Orders
 
-                  setCartCount(0);
-                  setWishlistCount(0);
+                  </div>
 
-                  window.dispatchEvent(
-                    new Event("authChange")
-                  );
+                </Link>
 
-                  navigate("/");
+                <div
+                  className="dropdown-item logout"
+                  onClick={() => {
 
-                }}
-              >
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("user");
 
-                <FaSignOutAlt />
+                    setUser(null);
 
-                Logout
+                    setCartCount(0);
+                    setWishlistCount(0);
+
+                    window.dispatchEvent(
+                      new Event("authChange")
+                    );
+
+                    navigate("/");
+
+                  }}
+                >
+
+                  <FaSignOutAlt />
+
+                  Logout
+
+                </div>
 
               </div>
 
             </div>
 
-          </div>
+          ) : (
 
-        ) : (
+            <div className="auth-buttons">
 
-          <div className="auth-buttons">
+              <Link to="/login">
 
-            <Link to="/login">
+                <button className="auth-btn">
 
-              <button className="auth-btn">
+                  Login
 
-                Login
+                </button>
 
-              </button>
+              </Link>
 
-            </Link>
+              <Link to="/register">
 
-            <Link to="/register">
+                <button className="auth-btn register-btn">
 
-              <button className="auth-btn register-btn">
+                  Register
 
-                Register
+                </button>
 
-              </button>
+              </Link>
 
-            </Link>
+            </div>
 
-          </div>
+          )}
 
-        )}
+        </div>
 
       </div>
 
-    </div>
+    );
+  }
 
-  );
-}
-
-export default Navbar;
+  export default Navbar;

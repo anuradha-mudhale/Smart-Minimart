@@ -35,7 +35,7 @@ function AppContent() {
     location.pathname.startsWith("/admin");
 
   return (
-    <>
+    <>  
       {/* User Navbar only for non-admin pages */}
       {!isAdminRoute && (
         <Navbar
